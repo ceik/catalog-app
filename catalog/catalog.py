@@ -29,6 +29,7 @@ from flask import flash, make_response
 from flask import session as login_session
 
 app = Flask(__name__)
+app.secret_key = 'super_secret_key'
 
 CLIENT_ID = json.loads(open(
     '/var/www/catalog/google_client_secret.json', 'r')
@@ -650,6 +651,5 @@ def create_user(login_session):
 
 
 if __name__ == '__main__':
-    app.secret_key = 'super_secret_key'
     app.debug = True
-    app.run(host='0.0.0.0', port=5000)
+    app.run()
