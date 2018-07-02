@@ -31,7 +31,8 @@ from flask import session as login_session
 app = Flask(__name__)
 
 CLIENT_ID = json.loads(open(
-    'google_client_secret.json', 'r').read())['web']['client_id']
+    '/var/www/catalog/google_client_secret.json', 'r')
+    .read())['web']['client_id']
 
 engine = create_engine('sqlite:///catalog_project.db')
 Base.metadata.bind = engine
