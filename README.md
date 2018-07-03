@@ -10,6 +10,7 @@ The project is built with Python2 and uses:
 - requests
 - oauth2client
 - httplib2
+- psycopg2
 
 ## To Run
 - Set up an Apache Webserver with mod_wsgi
@@ -18,6 +19,7 @@ The project is built with Python2 and uses:
 - Create a catalog.wsgi in /var/www/catalog with the content below.
 - Change the Apache config located at `/etc/apache2/sites-enabled/000-default.conf` to the content below. Make sure to replace the `xxx` with the proper values and edit the other values if necessary.
 - Restart the Apache server with `sudo apache2ctl restart`
+- Install a postgres database with the database `catalog` and the user `catalog` with password `udacity`. If different values are used, make sure to change them in all occurences in this repo.
 
 
 ## catalog.wsgi
