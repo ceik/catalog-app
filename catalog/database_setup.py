@@ -146,7 +146,7 @@ class ProductsCategories(Base):
         }
 
 
-engine = create_engine('sqlite:///catalog_project.db')
+engine = create_engine('postgresql://catalog:udacity@localhost/catalog')
 
 Base.metadata.create_all(engine)
 

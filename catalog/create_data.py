@@ -14,7 +14,7 @@ from sqlalchemy.orm import sessionmaker
 from database_setup import Base
 from database_setup import Users, Categories, Products, ProductsCategories
 
-engine = create_engine('postgresql://catalog:@localhost/catalog')
+engine = create_engine('postgresql://catalog:udacity@localhost/catalog')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
