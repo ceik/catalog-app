@@ -2,7 +2,7 @@
 
 Catalog App that implements a category tree, Google OAuth, and user permissions
 
-## Dependencies
+## Python Dependencies
 
 The project is built with Python2 and uses:
 - flask
@@ -11,12 +11,36 @@ The project is built with Python2 and uses:
 - oauth2client
 - httplib2
 
-The course also provides a VirtualBox & Vagrant Setup that already contains some of the dependency libraries. See
-here for install instructions: https://classroom.udacity.com/nanodegrees/nd004/parts/af045689-1d81-46e7-8a3b-ad05de1142ce/modules/353202897075460/lessons/3423258756/concepts/14c72fe3-e3fe-4959-9c4b-467cf5b7c3a0
-
 ## To Run
-- Run `vagrant up` & `vagrant ssh` in the vagrant folder
-- Once in the VM, navigate to `/vagrant/catalog`
-- Create the database by running `database_setup.py`
-- (Optionally) Create some dummy data by running `create_data.py`
-- Make the project run on localhost by running `catalog.py`
+- Set up an Apache Webserver with mod_wsgi
+- Install dependencies
+- Configure the google app and download the google_client_secret.json. The path to this file is currently hardcoded to /var/www/catalog/google_client_secret.json. Change this in all occurences in catalog.py if necessary.
+- Create a catalog.wsgi in /var/www/catalog with the content below.
+- Change the Apache config located at `/etc/apache2/sites-enabled/000-default.conf` to the content below. Make sure to replace the `xxx` with the proper values and edit the other values if necessary.
+- Restart the Apache server with `sudo apache2ctl restart`
+
+
+## catalog.wsgi
+```
+import sys
+sys.path.append('/var/www/catalog/catalog-app/catalog')
+
+from catalog import app as application
+```
+
+## Apache Config
+```
+<VirtualHost *>
+    ServerName xxx
+
+    WSGIDaemonProcess catalog user=xxx group=xxx threads=5
+    WSGIScriptAlias / /var/www/catalog/catalog.wsgi
+
+    <Directory /var/www/catalog>
+        WSGIProcessGroup catalog
+        WSGIApplicationGroup %{GLOBAL}
+        Order deny,allow
+        Allow from all
+    </Directory>
+</VirtualHost>
+```
