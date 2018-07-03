@@ -2,6 +2,16 @@
 
 Catalog App that implements a category tree, Google OAuth, and user permissions
 
+## Reviewer Info
+
+The live version of this project is running at: http://ec2-18-185-18-45.eu-central-1.compute.amazonaws.com/
+
+To connect to the EC2 instance: `ssh -i ~/.ssh/grader.pem grader@ec2-18-185-18-45.eu-central-1.compute.amazonaws.com -p 2200`
+
+Third Party Resources used:
+- Stackoverflow
+- Docs of the used software
+
 ## Python Dependencies
 
 The project is built with Python2 and uses:
